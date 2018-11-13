@@ -1,0 +1,23 @@
+datasource:
+  primary:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url:
+    username:
+    password:
+    hikari:
+      pool-name: pool-lxl1
+      maximum-pool-size: 50
+      minimum-idle: 10
+  second:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url:
+    username:
+    password:
+    hikari:
+      pool-name: pool-lxl2
+      maximum-pool-size: 40
+      minimum-idle: 10
+server:
+  port: 9081

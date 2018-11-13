@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yikun.lucky.dao.primary.ICommentDao">
+
+    <resultMap id="BaseResultMap" type="com.yikun.lucky.entity.CommentModel">
+        <result property="id" column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+        <result property="articleId" column="article_id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="content" column="content" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="fromUid" column="from_uid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="uname" column="uname" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="module" column="module" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="state" column="state" javaType="java.lang.Short" jdbcType="SMALLINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, article_id, content, from_uid, uname, avatar, create_time, update_time, module, 
+    state
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from comment_news
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from comment_news
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.yikun.lucky.entity.CommentModel">
+    insert into comment_news (id, article_id, content,
+      from_uid, uname, avatar, 
+      create_time, update_time, module, 
+      state)
+    values (#{id,jdbcType=BIGINT}, #{articleId,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{fromUid,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{module,jdbcType=VARCHAR}, 
+      #{state,jdbcType=SMALLINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.yikun.lucky.entity.CommentModel">
+        insert into comment_news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="articleId != null">
+                article_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="fromUid != null">
+                from_uid,
+            </if>
+            <if test="uname != null">
+                uname,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="module != null">
+                module,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="articleId != null">
+                #{articleId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="fromUid != null">
+                #{fromUid,jdbcType=VARCHAR},
+            </if>
+            <if test="uname != null">
+                #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="module != null">
+                #{module,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=SMALLINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yikun.lucky.entity.CommentModel">
+        update comment_news
+        <set>
+            <if test="articleId != null">
+                article_id = #{articleId,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="fromUid != null">
+                from_uid = #{fromUid,jdbcType=VARCHAR},
+            </if>
+            <if test="uname != null">
+                uname = #{uname,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="module != null">
+                module = #{module,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=SMALLINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yikun.lucky.entity.CommentModel">
+    update comment_news
+    set article_id = #{articleId,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      from_uid = #{fromUid,jdbcType=VARCHAR},
+      uname = #{uname,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      module = #{module,jdbcType=VARCHAR},
+      state = #{state,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <!--自定义-->
+    <select id="selectByArticleId" resultMap="BaseResultMap">
+        select
+        *
+        from comment_news
+        where article_id = #{articleId,jdbcType=VARCHAR} and state = 2
+        order by id desc
+        <if test="offset != null and size != null">
+            limit #{offset} , #{size}
+        </if>
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select
+        count(1)
+        from comment_news
+        where state = 2 and article_id = #{articleId} and state = 2
+    </select>
+</mapper>
